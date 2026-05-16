@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "domain": "bridge-design",
+    "codes": ["IRC:5:2015", "IRC:6:2017", "IRC:78:2014", "IRC:112:2020", "IS:1893:2016"],
+    "note": "Compliance rules for bridge and structure design review."
+  },
+  "rules": [
+    {
+      "id": "BRG-001",
+      "parameter": "min_vertical_clearance",
+      "unit": "m",
+      "code": "IRC:5:2015, Cl. 10",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "navigable_waterway": 1.5,
+        "non_navigable_upto_30m_span": 1.5,
+        "non_navigable_above_30m_span": 1.5,
+        "railway_underbridge": 7.01
+      }
+    },
+    {
+      "id": "BRG-002",
+      "parameter": "design_load_standard",
+      "code": "IRC:6:2017",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "nh_4lane_expressway": "Class 70R (both lanes) or Class A + Class A",
+        "nh_2lane": "Class A (both lanes) or Class 70R (one lane)",
+        "sh": "Class A",
+        "mdrodr": "Class A"
+      }
+    },
+    {
+      "id": "BRG-003",
+      "parameter": "design_discharge_return_period",
+      "unit": "years",
+      "code": "IRC:SP:13:2020, Cl. 4.1",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "culvert_pipe_box": 25,
+        "minor_bridge_6_to_30m": 50,
+        "major_bridge_above_30m": 100
+      }
+    },
+    {
+      "id": "BRG-004",
+      "parameter": "scour_depth",
+      "code": "IRC:78:2014, Cl. 703",
+      "severity_if_violated": "CRITICAL",
+      "formula": "Lacey's: D = 1.27 × (q² / f)^(1/3)",
+      "pier_multiplier": 1.33,
+      "abutment_multiplier": 1.27,
+      "note": "Always verify scour depth calculation using Lacey's formula with given q and f values"
+    },
+    {
+      "id": "BRG-005",
+      "parameter": "min_foundation_depth_below_scour",
+      "unit": "m",
+      "code": "IRC:78:2014",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "piles": 3.0,
+        "wells": 2.0,
+        "open_foundations": 0.6
+      }
+    },
+    {
+      "id": "BRG-006",
+      "parameter": "min_concrete_grade",
+      "code": "IRC:112:2020",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "rcc_general": "M-30",
+        "psc_prestressed": "M-40",
+        "pile_foundations": "M-35",
+        "substructure_moderate_exposure": "M-30"
+      }
+    },
+    {
+      "id": "BRG-007",
+      "parameter": "seismic_zone_consistency",
+      "code": "IS:1893:2016, IRC:6:2017",
+      "severity_if_violated": "CRITICAL",
+      "requirement": "Seismic zone used in bridge design must match the zone from IS:1893 Part 1 Fig. 18 for the project location and must be consistent with geotechnical report"
+    },
+    {
+      "id": "BRG-008",
+      "parameter": "min_wearing_coat_thickness",
+      "unit": "mm",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "MINOR",
+      "min_value": 65,
+      "note": "Bituminous wearing coat on bridge deck: 65 mm minimum"
+    },
+    {
+      "id": "BRG-009",
+      "parameter": "min_deck_width",
+      "code": "IRC:5:2015",
+      "severity_if_violated": "MAJOR",
+      "requirement": "Bridge deck width must accommodate full carriageway + kerb/crash barrier + footpath (if applicable)"
+    },
+    {
+      "id": "BRG-010",
+      "parameter": "afflux",
+      "code": "IRC:SP:13:2020",
+      "severity_if_violated": "MAJOR",
+      "max_afflux_m": 0.3,
+      "note": "Maximum permissible afflux is 0.3 m unless site conditions justify more"
+    }
+  ]
+}

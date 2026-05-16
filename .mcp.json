@@ -1,0 +1,130 @@
+{
+  "mcpServers": {
+    "irc-digital-library": {
+      "command": "node",
+      "args": ["mcp/tier1/irc-digital-library/index.js"],
+      "env": {
+        "IRC_API_KEY": "${IRC_API_KEY}",
+        "IRC_API_BASE_URL": "${IRC_API_BASE_URL:-https://api.irc.org.in/v1}"
+      },
+      "description": "IRC Digital Library — lookup IRC code clauses, parametric tables, and edition metadata"
+    },
+    "morth-specs-db": {
+      "command": "node",
+      "args": ["mcp/tier1/morth-specs-db/index.js"],
+      "env": {
+        "MORTH_API_KEY": "${MORTH_API_KEY}",
+        "MORTH_API_BASE_URL": "${MORTH_API_BASE_URL:-https://morth.nic.in/api/specs/v1}"
+      },
+      "description": "MoRTH Specifications Database — lookup section/clause requirements"
+    },
+    "bis-standards": {
+      "command": "node",
+      "args": ["mcp/tier1/bis-standards/index.js"],
+      "env": {
+        "BIS_API_KEY": "${BIS_API_KEY}",
+        "BIS_API_BASE_URL": "${BIS_API_BASE_URL:-https://bis.gov.in/api/standards/v1}"
+      },
+      "description": "BIS Standards Portal — IS code lookup for geotechnical and material standards"
+    },
+    "nhai-circulars": {
+      "command": "node",
+      "args": ["mcp/tier1/nhai-circulars/index.js"],
+      "env": {
+        "NHAI_API_KEY": "${NHAI_API_KEY}",
+        "NHAI_API_BASE_URL": "${NHAI_API_BASE_URL:-https://nhai.gov.in/api/circulars/v1}"
+      },
+      "description": "NHAI Circular Repository — search and retrieve NHAI circulars by topic and date"
+    },
+    "google-drive": {
+      "command": "node",
+      "args": ["mcp/tier2/google-drive/index.js"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REFRESH_TOKEN": "${GOOGLE_REFRESH_TOKEN}"
+      },
+      "description": "Google Drive — access DPR documents and drawings stored in Drive"
+    },
+    "sharepoint": {
+      "command": "node",
+      "args": ["mcp/tier2/sharepoint/index.js"],
+      "env": {
+        "SHAREPOINT_TENANT_ID": "${SHAREPOINT_TENANT_ID}",
+        "SHAREPOINT_CLIENT_ID": "${SHAREPOINT_CLIENT_ID}",
+        "SHAREPOINT_CLIENT_SECRET": "${SHAREPOINT_CLIENT_SECRET}"
+      },
+      "description": "SharePoint/OneDrive — access project documents via Microsoft 365"
+    },
+    "autodesk-docs": {
+      "command": "node",
+      "args": ["mcp/tier2/autodesk-docs/index.js"],
+      "env": {
+        "AUTODESK_CLIENT_ID": "${AUTODESK_CLIENT_ID}",
+        "AUTODESK_CLIENT_SECRET": "${AUTODESK_CLIENT_SECRET}"
+      },
+      "description": "Autodesk Docs / AutoCAD Web — read DWG and drawing sheets"
+    },
+    "excel-sheets": {
+      "command": "node",
+      "args": ["mcp/tier2/excel-sheets/index.js"],
+      "env": {
+        "EXCEL_FILE_PATH": "${EXCEL_FILE_PATH:-}"
+      },
+      "description": "Excel/Google Sheets — parse BOQ, SoR, and tabular DPR data"
+    },
+    "hec-ras": {
+      "command": "node",
+      "args": ["mcp/tier3/hec-ras/index.js"],
+      "env": {
+        "HECRAS_PROJECT_DIR": "${HECRAS_PROJECT_DIR:-}",
+        "HECHMS_PROJECT_DIR": "${HECHMS_PROJECT_DIR:-}"
+      },
+      "description": "HEC-RAS/HEC-HMS — read hydraulic model outputs for bridge/culvert review"
+    },
+    "iitpave": {
+      "command": "node",
+      "args": ["mcp/tier3/iitpave/index.js"],
+      "env": {
+        "IITPAVE_OUTPUT_DIR": "${IITPAVE_OUTPUT_DIR:-}"
+      },
+      "description": "IITPAVE/KENPAVE — read pavement design software outputs for verification"
+    },
+    "imd-rainfall": {
+      "command": "node",
+      "args": ["mcp/tier4/imd/index.js"],
+      "env": {
+        "IMD_API_KEY": "${IMD_API_KEY}",
+        "IMD_API_BASE_URL": "${IMD_API_BASE_URL:-https://api.imd.gov.in/v1}"
+      },
+      "description": "Indian Meteorological Department — fetch rainfall data for hydrology review"
+    },
+    "parivesh": {
+      "command": "node",
+      "args": ["mcp/tier4/parivesh/index.js"],
+      "env": {
+        "PARIVESH_API_KEY": "${PARIVESH_API_KEY}",
+        "PARIVESH_BASE_URL": "${PARIVESH_BASE_URL:-https://parivesh.nic.in/api/v1}"
+      },
+      "description": "PARIVESH — check environmental clearance status and conditions"
+    },
+    "slack": {
+      "command": "node",
+      "args": ["mcp/tier5/slack/index.js"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_DEFAULT_CHANNEL": "${SLACK_DEFAULT_CHANNEL:-#dpr-reviews}"
+      },
+      "description": "Slack — post review summaries and managed agent alerts"
+    },
+    "primavera": {
+      "command": "node",
+      "args": ["mcp/tier5/primavera/index.js"],
+      "env": {
+        "PRIMAVERA_DB_URL": "${PRIMAVERA_DB_URL:-}",
+        "MSPROJECT_FILE_PATH": "${MSPROJECT_FILE_PATH:-}"
+      },
+      "description": "Primavera/MS Project — read project schedules for milestone tracking"
+    }
+  }
+}

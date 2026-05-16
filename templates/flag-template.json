@@ -1,0 +1,116 @@
+{
+  "_description": "Standard flag structure for all IAHE DPR Reviewer compliance findings",
+  "flag_schema": {
+    "id": {
+      "type": "string",
+      "format": "{SKILL_PREFIX}-{nn}",
+      "examples": ["GD-01", "PD-03", "BD-12", "HD-02", "TE-05", "RS-07", "GT-01", "ES-03", "CE-04", "QA-02", "DR-08", "SA-01"]
+    },
+    "severity": {
+      "type": "enum",
+      "values": ["CRITICAL", "MAJOR", "MINOR", "OBSERVATION", "VERIFY"],
+      "definitions": {
+        "CRITICAL": "Design safety, clearance, or load-bearing non-compliance — construction cannot proceed without resolution",
+        "MAJOR": "Code non-compliance that significantly affects design quality, cost, or safety — must be resolved before DPR approval",
+        "MINOR": "Deviation from best practice or minor code non-compliance — should be addressed in next revision",
+        "OBSERVATION": "Suggestion for improved design or documentation — for PE consideration",
+        "VERIFY": "Citation from training knowledge with connector offline — engineer must independently verify"
+      }
+    },
+    "skill": {
+      "type": "string",
+      "values": ["geometric-design", "pavement-design", "bridge-design", "hydrology-drainage", "traffic-engineering", "road-safety", "geotechnical", "environmental-social", "cost-estimation", "quality-assurance", "drawing-reviewer", "survey-alignment", "dpr-master"]
+    },
+    "item": {
+      "type": "string",
+      "description": "Short description of what is being checked"
+    },
+    "location": {
+      "type": "string",
+      "description": "Chainage, bridge name, sheet number, or DPR section reference"
+    },
+    "found": {
+      "type": "string",
+      "description": "Value or condition found in the DPR"
+    },
+    "required": {
+      "type": "string",
+      "description": "Value or condition required by the applicable code"
+    },
+    "code_reference": {
+      "type": "string",
+      "description": "Full code citation including code number, clause/table",
+      "example": "IRC:SP:84:2014, Table 2, Cl. 4.3.1"
+    },
+    "recommendation": {
+      "type": "string",
+      "description": "Recommended corrective action"
+    },
+    "connector_source": {
+      "type": "string",
+      "values": ["irc-digital-library", "morth-specs-db", "bis-standards", "nhai-circulars", "training-knowledge [VERIFY]", "embedded-reference"]
+    },
+    "confidence": {
+      "type": "enum",
+      "values": ["HIGH", "MEDIUM", "LOW"],
+      "description": "For drawing-reviewer only — confidence of extracted dimension"
+    },
+    "cross_volume_check_id": {
+      "type": "string",
+      "description": "CV-01 through CV-10 if this flag is from a cross-volume consistency check",
+      "optional": true
+    }
+  },
+  "example_flags": [
+    {
+      "id": "GD-01",
+      "severity": "CRITICAL",
+      "skill": "geometric-design",
+      "item": "Horizontal curve radius below minimum for design speed",
+      "location": "Ch. 45+200",
+      "found": "R = 180 m",
+      "required": "R ≥ 250 m for V = 100 kmph, Plain terrain",
+      "code_reference": "IRC:38, Table 1",
+      "recommendation": "Revise alignment to increase curve radius to ≥ 250 m or reduce design speed with authority concurrence",
+      "connector_source": "irc-digital-library"
+    },
+    {
+      "id": "PD-01",
+      "severity": "CRITICAL",
+      "skill": "pavement-design",
+      "item": "Design traffic inconsistent between traffic and pavement chapters",
+      "location": "Pavement Design Report, Section 3.2 vs Traffic Chapter, Table 5.1",
+      "found": "Pavement design uses 120 msa",
+      "required": "Traffic chapter states 150 msa — must match",
+      "code_reference": "IRC:37:2018, Cl. 4; Cross-volume check CV-01",
+      "recommendation": "Reconcile design traffic across all chapters; use 150 msa consistently",
+      "connector_source": "training-knowledge [VERIFY]",
+      "cross_volume_check_id": "CV-01"
+    },
+    {
+      "id": "BD-01",
+      "severity": "CRITICAL",
+      "skill": "bridge-design",
+      "item": "Vertical clearance below minimum above HFL",
+      "location": "Bridge at Ch. 78+400 (Br-7)",
+      "found": "Clearance = 0.9 m above HFL",
+      "required": "Minimum 1.5 m per IRC:5:2015, Cl. 10",
+      "code_reference": "IRC:5:2015, Clause 10.1",
+      "recommendation": "Raise soffit level or lower HFL basis — verify hydrological data and revise GAD",
+      "connector_source": "irc-digital-library"
+    },
+    {
+      "id": "DR-01",
+      "severity": "MAJOR",
+      "skill": "drawing-reviewer",
+      "item": "Formation width below IRC:SP:84 standard",
+      "location": "Sheet CRS-003, Typical Cross-Section Ch. 12–18 km",
+      "found": "Formation width = 24.5 m",
+      "required": "26.5 m for 4-lane divided NH per IRC:SP:84:2014",
+      "code_reference": "IRC:SP:84:2014, Table 2",
+      "recommendation": "Revise cross-section to provide 26.5 m formation width",
+      "connector_source": "irc-digital-library",
+      "confidence": "HIGH"
+    }
+  ]
+}

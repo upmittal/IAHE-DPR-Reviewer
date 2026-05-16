@@ -1,0 +1,114 @@
+{
+  "_meta": {
+    "domain": "pavement-design",
+    "codes": ["IRC:37:2018", "IRC:58:2015", "MoRTH 5th Rev. Sections 300-600"],
+    "note": "Compliance rules for pavement design review. Crust catalogue values from IRC:37:2018 Table 2."
+  },
+  "rules": [
+    {
+      "id": "PAV-001",
+      "parameter": "cbr_design_method",
+      "code": "IRC:37:2018, Cl. 5.3",
+      "severity_if_violated": "CRITICAL",
+      "requirement": "Design CBR must be the lowest quartile (25th percentile) of all soaked CBR test results",
+      "check_type": "procedure"
+    },
+    {
+      "id": "PAV-002",
+      "parameter": "cbr_soaking_period",
+      "code": "IRC:37:2018",
+      "severity_if_violated": "CRITICAL",
+      "requirement": "CBR must be 4-day soaked laboratory CBR, not field/unsoaked",
+      "check_type": "procedure"
+    },
+    {
+      "id": "PAV-003",
+      "parameter": "design_life",
+      "unit": "years",
+      "code": "IRC:37:2018, Cl. 4",
+      "severity_if_violated": "MAJOR",
+      "requirement": "Minimum 15 years for NHs; 20 years recommended",
+      "min_value": 15
+    },
+    {
+      "id": "PAV-004",
+      "parameter": "min_bc_thickness",
+      "unit": "mm",
+      "code": "IRC:37:2018",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "msa_gte_10": 40,
+        "msa_5_to_10": 40,
+        "msa_lt_5": 25
+      }
+    },
+    {
+      "id": "PAV-005",
+      "parameter": "min_wmm_thickness_nh",
+      "unit": "mm",
+      "code": "MoRTH Cl. 406",
+      "severity_if_violated": "MAJOR",
+      "min_value": 250,
+      "note": "Minimum WMM thickness for National Highways"
+    },
+    {
+      "id": "PAV-006",
+      "parameter": "vdf_justification",
+      "code": "IRC:37:2018, Table 4.1",
+      "severity_if_violated": "MAJOR",
+      "requirement": "VDF must be referenced to IRC:37 Table 4.1 or justified by axle load survey",
+      "typical_ranges": {
+        "nh_4lane": [2.5, 4.5],
+        "nh_2lane": [3.5, 5.0],
+        "sh": [2.0, 4.0]
+      }
+    },
+    {
+      "id": "PAV-007",
+      "parameter": "min_growth_rate_cv",
+      "unit": "%/year",
+      "code": "IRC:108",
+      "severity_if_violated": "MAJOR",
+      "min_value": 5.0,
+      "note": "Minimum 5% growth rate for commercial vehicles unless justified by historical data"
+    },
+    {
+      "id": "PAV-008",
+      "parameter": "rigid_pavement_min_concrete_grade",
+      "code": "IRC:58:2015",
+      "severity_if_violated": "CRITICAL",
+      "min_grade": "M-40",
+      "note": "For National Highways with heavy commercial traffic"
+    },
+    {
+      "id": "PAV-009",
+      "parameter": "rigid_pavement_dowel_bar",
+      "code": "IRC:58:2015",
+      "severity_if_violated": "MAJOR",
+      "requirements": {
+        "min_diameter_mm": 32,
+        "spacing_mm": 300,
+        "length_mm": 500
+      }
+    },
+    {
+      "id": "PAV-010",
+      "parameter": "gsb_filter_criteria",
+      "code": "MoRTH Cl. 401",
+      "severity_if_violated": "MAJOR",
+      "requirement": "GSB must satisfy filter and drainage criteria per MoRTH Cl. 401.3.2",
+      "check_type": "procedure"
+    }
+  ],
+  "crust_catalogue_reference": {
+    "note": "Full IRC:37:2018 crust catalogue (Table 2) — use irc-digital-library connector for exact values",
+    "sample_entries": [
+      { "cbr_pct": 5, "msa": 20, "gsb_mm": 200, "wmm_mm": 250, "dbm_mm": 75, "bc_mm": 40 },
+      { "cbr_pct": 5, "msa": 50, "gsb_mm": 200, "wmm_mm": 250, "dbm_mm": 100, "bc_mm": 50 },
+      { "cbr_pct": 8, "msa": 20, "gsb_mm": 150, "wmm_mm": 250, "dbm_mm": 50, "bc_mm": 40 },
+      { "cbr_pct": 8, "msa": 50, "gsb_mm": 150, "wmm_mm": 250, "dbm_mm": 75, "bc_mm": 50 },
+      { "cbr_pct": 10, "msa": 50, "gsb_mm": 150, "wmm_mm": 250, "dbm_mm": 75, "bc_mm": 40 },
+      { "cbr_pct": 10, "msa": 150, "gsb_mm": 150, "wmm_mm": 250, "dbm_mm": 100, "bc_mm": 50 }
+    ]
+  }
+}
