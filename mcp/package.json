@@ -18,14 +18,17 @@
     "start:imd": "node tier4/imd/index.js",
     "start:parivesh": "node tier4/parivesh/index.js",
     "start:slack": "node tier5/slack/index.js",
-    "start:primavera": "node tier5/primavera/index.js"
+    "start:primavera": "node tier5/primavera/index.js",
+    "ingest:irc": "node tier1/irc-digital-library/ingest.js --all",
+    "ingest:irc:dry": "node tier1/irc-digital-library/ingest.js --all --dry-run"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
+    "better-sqlite3": "^9.6.0",
+    "dotenv": "^16.4.5",
     "node-fetch": "^3.3.2",
-    "xlsx": "^0.18.5",
     "pdf-parse": "^1.1.1",
-    "dotenv": "^16.4.5"
+    "xlsx": "^0.18.5"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -18,3 +18,16 @@ Thumbs.db
 .vscode/settings.json
 *.swp
 *.swo
+
+# IRC PDF ingestion — raw PDFs and generated artefacts
+reference-data/irc-pdfs/raw/
+reference-data/irc-pdfs/irc-catalog.sqlite
+reference-data/irc-pdfs/irc-catalog.sqlite-shm
+reference-data/irc-pdfs/irc-catalog.sqlite-wal
+reference-data/irc-pdfs/extracted/
+
+# Python extraction pipeline
+scripts/pdf-extractor/.venv/
+scripts/pdf-extractor/__pycache__/
+__pycache__/
+*.pyc
