@@ -1,0 +1,151 @@
+{
+  "_meta": {
+    "domain": "geometric-design",
+    "codes": ["IRC:38", "IRC:52", "IRC:SP:23", "IRC:SP:73", "IRC:SP:84", "IRC:SP:87", "IRC:SP:99"],
+    "note": "Parametric compliance rules for automated flagging. Verify values via irc-digital-library connector."
+  },
+  "rules": [
+    {
+      "id": "GEO-001",
+      "parameter": "minimum_horizontal_curve_radius",
+      "unit": "m",
+      "code": "IRC:38",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "design_speed_120": { "plain": 360, "rolling": 360 },
+        "design_speed_100": { "plain": 250, "rolling": 250 },
+        "design_speed_80": { "plain": 155, "rolling": 155, "mountainous": 90, "steep": 60 },
+        "design_speed_60": { "plain": 90, "rolling": 90, "mountainous": 50, "steep": 30 },
+        "design_speed_50": { "plain": 60, "rolling": 60, "mountainous": 30, "steep": 20 },
+        "design_speed_40": { "plain": 30, "rolling": 30, "mountainous": 20, "steep": 15 }
+      }
+    },
+    {
+      "id": "GEO-002",
+      "parameter": "maximum_superelevation",
+      "unit": "%",
+      "code": "IRC:38",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "nh_sh_plain_rolling": 7,
+        "mountainous_steep": 10,
+        "snow_bound_area": 7,
+        "urban_intersection": 4
+      }
+    },
+    {
+      "id": "GEO-003",
+      "parameter": "stopping_sight_distance",
+      "unit": "m",
+      "code": "IRC:52",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "120": 180,
+        "100": 127,
+        "80": 90,
+        "60": 60,
+        "50": 45,
+        "40": 30
+      }
+    },
+    {
+      "id": "GEO-004",
+      "parameter": "maximum_gradient",
+      "unit": "%",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "4lane_plain": 3.3,
+        "4lane_rolling": 5.0,
+        "4lane_mountainous": 6.0,
+        "4lane_steep": 7.0,
+        "2lane_plain": 3.3,
+        "2lane_rolling": 5.0,
+        "2lane_mountainous": 6.0,
+        "2lane_steep": 7.0,
+        "expressway_plain": 3.0,
+        "expressway_rolling": 4.0
+      }
+    },
+    {
+      "id": "GEO-005",
+      "parameter": "carriageway_width",
+      "unit": "m",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "CRITICAL",
+      "lookup": {
+        "2lane_nh": 7.0,
+        "4lane_nh_each": 7.0,
+        "6lane_nh_each": 10.5,
+        "expressway_each": 15.0,
+        "lane_width_4lane": 3.5,
+        "lane_width_expressway": 3.75
+      }
+    },
+    {
+      "id": "GEO-006",
+      "parameter": "paved_shoulder_width",
+      "unit": "m",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "4lane_nh_outer": 1.5,
+        "4lane_nh_inner": 1.0,
+        "2lane_nh_each": 1.5,
+        "expressway_outer": 3.0,
+        "6lane_nh_outer": 3.0
+      }
+    },
+    {
+      "id": "GEO-007",
+      "parameter": "median_width",
+      "unit": "m",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "4lane_nh_min": 5.0,
+        "6lane_nh_min": 12.0,
+        "expressway_min": 12.0
+      }
+    },
+    {
+      "id": "GEO-008",
+      "parameter": "formation_width",
+      "unit": "m",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "2lane_nh": 12.0,
+        "4lane_nh": 26.5,
+        "6lane_nh": 35.0,
+        "expressway_8lane": 45.0
+      }
+    },
+    {
+      "id": "GEO-009",
+      "parameter": "row_width",
+      "unit": "m",
+      "code": "IRC:SP:84",
+      "severity_if_violated": "MAJOR",
+      "lookup": {
+        "2lane_nh_plain": 30,
+        "4lane_nh_plain": 60,
+        "4lane_nh_rolling_mountain": 45,
+        "6lane_nh": 90,
+        "expressway": 90
+      }
+    },
+    {
+      "id": "GEO-010",
+      "parameter": "camber_pct",
+      "unit": "%",
+      "code": "IRC:SP:73",
+      "severity_if_violated": "MINOR",
+      "lookup": {
+        "bituminous_surface": { "min": 2.0, "max": 3.0 },
+        "concrete_surface": { "min": 1.5, "max": 2.5 },
+        "water_bound_macadam": { "min": 3.0, "max": 4.0 }
+      }
+    }
+  ]
+}

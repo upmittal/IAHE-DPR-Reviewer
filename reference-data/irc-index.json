@@ -1,0 +1,261 @@
+{
+  "_meta": {
+    "description": "IRC code index — parametric values and edition metadata for IAHE DPR Reviewer",
+    "last_updated": "2026-05-16",
+    "version": "1.0.0",
+    "note": "Values are for reference only. Always verify against current IRC edition via connector."
+  },
+  "codes": {
+    "IRC:38": {
+      "title": "Criteria for Design of Horizontal Curves and Superelevation for Roads",
+      "latest_edition": 1988,
+      "domain": "geometric",
+      "key_parameters": {
+        "min_radius_m": {
+          "design_speed_120": { "plain": 360, "rolling": 360 },
+          "design_speed_100": { "plain": 250, "rolling": 250 },
+          "design_speed_80": { "plain": 155, "rolling": 155, "mountainous": 90, "steep": 60 },
+          "design_speed_60": { "plain": 90, "rolling": 90, "mountainous": 50, "steep": 30 },
+          "design_speed_50": { "plain": 60, "rolling": 60, "mountainous": 30, "steep": 20 }
+        },
+        "max_superelevation_pct": {
+          "nh_plain_rolling": 7,
+          "mountainous_steep": 10,
+          "snow_areas": 7
+        }
+      }
+    },
+    "IRC:52": {
+      "title": "Recommendations about the Alignment Survey and Geometric Design of Hill Roads",
+      "latest_edition": 2001,
+      "domain": "geometric",
+      "key_parameters": {
+        "ssd_m": {
+          "120": 180,
+          "100": 127,
+          "80": 90,
+          "60": 60,
+          "50": 45,
+          "40": 30
+        },
+        "isd_m": {
+          "120": 360,
+          "100": 255,
+          "80": 180,
+          "60": 120,
+          "50": 90
+        }
+      }
+    },
+    "IRC:37": {
+      "title": "Guidelines for the Design of Flexible Pavements",
+      "latest_edition": 2018,
+      "domain": "pavement",
+      "key_parameters": {
+        "design_life_years": [15, 20],
+        "min_bc_thickness_mm": 40,
+        "min_wmm_nh_mm": 250,
+        "cbr_design_percentile": "lowest quartile (25th percentile)",
+        "vdf_range": { "nh_4lane": [2.5, 4.5], "nh_2lane": [3.5, 5.0] },
+        "lane_distribution_factors": {
+          "1_lane_one_direction": 1.0,
+          "2_lanes_one_direction": 0.75,
+          "3_lanes_one_direction": 0.60
+        }
+      }
+    },
+    "IRC:58": {
+      "title": "Guidelines for the Design of Plain Jointed Rigid Pavement for Highways",
+      "latest_edition": 2015,
+      "domain": "pavement",
+      "key_parameters": {
+        "min_concrete_grade": "M-40",
+        "dowel_bar_dia_mm": 32,
+        "dowel_bar_spacing_mm": 300,
+        "tie_bar_dia_mm": 16,
+        "min_subbase_thickness_mm": 150
+      }
+    },
+    "IRC:5": {
+      "title": "Standard Specifications and Code of Practice for Road Bridges — Section I: General Features of Design",
+      "latest_edition": 2015,
+      "domain": "bridge",
+      "key_parameters": {
+        "min_vertical_clearance_m": {
+          "navigable_waterway": 1.5,
+          "non_navigable_up_to_30m_span": 1.5,
+          "non_navigable_above_30m_span": 1.5
+        },
+        "design_life_years": 100
+      }
+    },
+    "IRC:6": {
+      "title": "Standard Specifications and Code of Practice for Road Bridges — Section II: Loads and Stresses",
+      "latest_edition": 2017,
+      "domain": "bridge",
+      "key_parameters": {
+        "load_standards": {
+          "class_AA_tracked_tonnes": 70,
+          "class_AA_wheeled_tonnes": 40,
+          "class_A_tonnes": 55,
+          "class_70R_tracked_tonnes": 70,
+          "class_70R_wheeled_tonnes": 70
+        },
+        "nh_4lane_design_combination": "Class 70R OR (Class A + Class A)",
+        "impact_factor": {
+          "class_A_upto_3m": 0.545,
+          "class_70R_upto_45m": "0.25 (tracked), 0.10-0.25 (wheeled)"
+        }
+      }
+    },
+    "IRC:78": {
+      "title": "Standard Specifications and Code of Practice for Road Bridges — Section VII: Foundations and Substructure",
+      "latest_edition": 2014,
+      "domain": "bridge",
+      "key_parameters": {
+        "min_foundation_below_scour_m": {
+          "piles": 3.0,
+          "wells": 2.0,
+          "open_foundations": 0.6
+        },
+        "scour_depth_formula": "Lacey's formula: D = 1.27 * (q^2/f)^(1/3)",
+        "min_scour_depth_multiplier_pier": 1.33
+      }
+    },
+    "IRC:112": {
+      "title": "Code of Practice for Concrete Road Bridges",
+      "latest_edition": 2020,
+      "domain": "bridge",
+      "key_parameters": {
+        "min_concrete_grade_rcc": "M-30",
+        "min_concrete_grade_psc": "M-40",
+        "min_cover_mm": {
+          "severe_exposure": 45,
+          "moderate_exposure": 35,
+          "mild_exposure": 25
+        }
+      }
+    },
+    "IRC:67": {
+      "title": "Code of Practice for Road Signs",
+      "latest_edition": 2012,
+      "domain": "safety",
+      "key_parameters": {
+        "retroreflectivity_class": {
+          "nh_open_road": "Type VII (High Intensity)",
+          "urban_construction": "Type IV (Engineer Grade)"
+        },
+        "advance_warning_distance_m": {
+          "junction_nh": 300,
+          "speed_restriction": 100,
+          "level_crossing": [400, 200, 60],
+          "curve_bridge": 150
+        }
+      }
+    },
+    "IRC:119": {
+      "title": "Guidelines for Traffic Safety Barriers",
+      "latest_edition": 2015,
+      "domain": "safety",
+      "key_parameters": {
+        "mandatory_locations": [
+          "Embankment height > 3 m",
+          "Median width < 5 m (concrete median barrier)",
+          "Bridge approaches (50 m each side)",
+          "Sharp curves (radius < 2 × minimum)"
+        ],
+        "working_width_classes": {
+          "W1": { "max_m": 0.6, "type": "Rigid concrete" },
+          "W2": { "max_m": 0.8, "type": "Rigid concrete" },
+          "W3": { "max_m": 1.0, "type": "W-beam semi-rigid" },
+          "W4": { "max_m": 1.3, "type": "W-beam heavy" },
+          "W5": { "max_m": 1.7, "type": "Thrie-beam" }
+        }
+      }
+    },
+    "IRC:SP:73": {
+      "title": "Manual of Specifications and Standards for Two-Laning of Highways",
+      "latest_edition": 2015,
+      "domain": "geometric",
+      "key_parameters": {
+        "formation_width_m": 12.0,
+        "carriageway_width_m": 7.0,
+        "paved_shoulder_m": 1.5,
+        "earthen_shoulder_m": 1.0,
+        "row_width_plain_m": 30
+      }
+    },
+    "IRC:SP:84": {
+      "title": "Manual of Specifications and Standards for Four Laning of National Highways",
+      "latest_edition": 2014,
+      "domain": "geometric",
+      "key_parameters": {
+        "formation_width_m": 26.5,
+        "carriageway_each_direction_m": 7.0,
+        "paved_shoulder_outer_m": 1.5,
+        "earthen_shoulder_m": 1.0,
+        "median_min_m": 5.0,
+        "row_width_plain_m": 60,
+        "row_width_rolling_mountain_m": 45,
+        "max_gradient_plain_pct": 3.3,
+        "max_gradient_rolling_pct": 5.0,
+        "max_gradient_mountainous_pct": 6.0
+      }
+    },
+    "IRC:SP:13": {
+      "title": "Guidelines for the Design of Small Bridges and Culverts",
+      "latest_edition": 2020,
+      "domain": "hydrology",
+      "key_parameters": {
+        "return_periods": {
+          "pipe_box_culvert": 25,
+          "minor_bridge_6_to_30m": 50,
+          "major_bridge_above_30m": 100
+        },
+        "min_culvert_diameter_mm": 900,
+        "min_box_culvert_size_m": "1.0 × 1.0",
+        "max_flow_velocity_box_ms": 3.0,
+        "max_flow_velocity_pipe_ms": 4.5
+      }
+    },
+    "IRC:106": {
+      "title": "Guidelines for Capacity of Roads in Rural Areas",
+      "latest_edition": 1990,
+      "domain": "traffic",
+      "key_parameters": {
+        "pcu_factors_plain": {
+          "two_wheelers": 0.5,
+          "auto_rickshaw": 0.75,
+          "car_jeep": 1.0,
+          "lcv": 1.5,
+          "truck_bus_2axle": 2.5,
+          "multi_axle": 3.0,
+          "tractor": 4.0
+        },
+        "design_service_volume": {
+          "4lane_divided_los_c": 2000,
+          "4lane_divided_capacity": 2800,
+          "2lane_capacity": 1500
+        }
+      }
+    },
+    "IRC:SP:19": {
+      "title": "Manual for Survey, Investigation and Preparation of Road Projects",
+      "latest_edition": 2001,
+      "domain": "geotechnical",
+      "key_parameters": {
+        "bore_log_spacing_m": {
+          "plain_rolling": 500,
+          "mountainous_steep": 300,
+          "bridge_site": "1 per pier or abutment"
+        },
+        "min_bore_depth_subgrade_m": 3.0,
+        "survey_corridor_width_m": {
+          "2lane_nh": "RoW + 30 m each side",
+          "4lane_nh": "RoW + 50 m each side",
+          "expressway": "RoW + 100 m each side"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "_meta": {
+    "description": "MoRTH Specifications for Road and Bridge Works (5th Revision) — section index",
+    "edition": "5th Revision",
+    "note": "Use morth-specs-db connector for exact clause text."
+  },
+  "sections": {
+    "100": {
+      "title": "General",
+      "description": "Scope, definitions, abbreviations, general obligations of contractor",
+      "key_clauses": ["101", "105", "107"],
+      "relevant_skills": ["quality-assurance"]
+    },
+    "200": {
+      "title": "Site Clearance",
+      "description": "Clearing and grubbing, stripping of topsoil, disposal",
+      "key_clauses": ["201", "202"],
+      "relevant_skills": ["cost-estimation"]
+    },
+    "300": {
+      "title": "Earthwork",
+      "description": "Embankment construction, subgrade preparation, compaction",
+      "key_clauses": ["301", "305", "306", "307"],
+      "relevant_skills": ["geotechnical", "pavement-design", "quality-assurance"],
+      "critical_requirements": {
+        "body_embankment_compaction": "95% of MDD (Modified Proctor)",
+        "top_500mm_subgrade_compaction": "97% of MDD",
+        "layer_thickness_max_mm": 300,
+        "subgrade_layer_max_mm": 200
+      }
+    },
+    "400": {
+      "title": "Sub-base and Base Courses",
+      "description": "Granular Sub-Base (GSB), Wet Mix Macadam (WMM), Dry Lean Concrete (DLC)",
+      "key_clauses": ["401", "406", "407"],
+      "relevant_skills": ["pavement-design", "quality-assurance"],
+      "critical_requirements": {
+        "gsb_min_cbr": 30,
+        "gsb_max_fines_pct": 10,
+        "wmm_lav_max": 40,
+        "wmm_compaction": "100% of MDD (Modified Proctor)"
+      }
+    },
+    "500": {
+      "title": "Bituminous Works",
+      "description": "Prime coat, tack coat, DBM, BC, Open Graded Premix",
+      "key_clauses": ["501", "502", "507", "509", "511"],
+      "relevant_skills": ["pavement-design", "quality-assurance"],
+      "critical_requirements": {
+        "dbm_vg_grade": "VG-30 minimum (VG-40 for hot regions)",
+        "bc_marshall_stability_kN": 9.0,
+        "bc_voids_in_mix_pct": "3-5",
+        "dbm_layer_temp_min_C": 130
+      }
+    },
+    "600": {
+      "title": "Cement Concrete Pavement",
+      "description": "Dry Lean Concrete sub-base, Pavement Quality Concrete (PQC)",
+      "key_clauses": ["601", "602", "603"],
+      "relevant_skills": ["pavement-design", "quality-assurance"]
+    },
+    "700": {
+      "title": "Bridges, Culverts and Other Structures — General",
+      "description": "Survey, design basis, materials, drawings for structures",
+      "key_clauses": ["701", "702"],
+      "relevant_skills": ["bridge-design", "hydrology-drainage"]
+    },
+    "800": {
+      "title": "Traffic Signs, Markings and Other Road Appurtenances",
+      "description": "Signs, pavement markings, crash barriers, milestones, guardrails",
+      "key_clauses": ["801", "802", "803", "810"],
+      "relevant_skills": ["road-safety"],
+      "critical_requirements": {
+        "sign_retroreflectivity": "Type VII minimum for NH",
+        "crash_barrier_type": "Per IRC:119",
+        "marking_material": "Thermoplastic or equivalent"
+      }
+    },
+    "900": {
+      "title": "Quality Control",
+      "description": "Test frequencies, acceptance criteria, QC records for all road works",
+      "key_clauses": ["900.1", "900.2", "900.3", "900.4", "900.5"],
+      "relevant_skills": ["quality-assurance"],
+      "test_frequency_summary": {
+        "subgrade_density": "1 per 500 m² per layer",
+        "gsb_gradation": "1 per 200 m³",
+        "wmm_density": "1 per 500 m² per layer",
+        "bc_core_density": "1 per 500 m² per layer",
+        "dbm_marshall": "1 per 100 MT",
+        "bitumen_penetration": "1 per tanker lot"
+      }
+    },
+    "1100": {
+      "title": "Plain and Reinforced Concrete — Bridges",
+      "description": "Formwork, reinforcement, concrete mix design, placement for bridges",
+      "key_clauses": ["1101", "1102", "1103", "1104"],
+      "relevant_skills": ["bridge-design", "quality-assurance"]
+    },
+    "1200": {
+      "title": "Prestressed Concrete — Bridges",
+      "description": "Pre-tensioning, post-tensioning systems, grouting",
+      "key_clauses": ["1201", "1202"],
+      "relevant_skills": ["bridge-design"]
+    },
+    "1300": {
+      "title": "Structural Steel — Bridges",
+      "description": "Fabrication, welding, erection, painting of steel bridges",
+      "key_clauses": ["1301", "1302"],
+      "relevant_skills": ["bridge-design"]
+    },
+    "1700": {
+      "title": "Quality Control — Bridge Works",
+      "description": "Test frequencies and acceptance criteria for concrete bridge works",
+      "key_clauses": ["1700.1", "1700.2", "1700.3"],
+      "relevant_skills": ["quality-assurance"],
+      "test_frequency_summary": {
+        "cube_strength_28day": "1 set per 30 m³ or part thereof",
+        "slump_test": "Every batch at site",
+        "cover_check": "Every pour",
+        "aggregate_impact_value": "1 per source per month"
+      }
+    },
+    "2500": {
+      "title": "Drainage Works — Road Side and Cross-Drainage",
+      "description": "Side drains, catch water drains, pipe culverts, box culverts",
+      "key_clauses": ["2501", "2502", "2503"],
+      "relevant_skills": ["hydrology-drainage", "cost-estimation"]
+    },
+    "2600": {
+      "title": "Expansion Joints and Bearings",
+      "description": "Elastomeric bearings, POT bearings, expansion joints for bridges",
+      "key_clauses": ["2601", "2602"],
+      "relevant_skills": ["bridge-design"]
+    }
+  }
+}

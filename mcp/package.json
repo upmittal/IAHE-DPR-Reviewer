@@ -1,0 +1,34 @@
+{
+  "name": "iahe-dpr-reviewer-mcp",
+  "version": "1.0.0",
+  "description": "MCP servers for IAHE DPR Reviewer — IRC, MoRTH, BIS, NHAI and project data connectors",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install",
+    "start:irc": "node tier1/irc-digital-library/index.js",
+    "start:morth": "node tier1/morth-specs-db/index.js",
+    "start:bis": "node tier1/bis-standards/index.js",
+    "start:nhai": "node tier1/nhai-circulars/index.js",
+    "start:gdrive": "node tier2/google-drive/index.js",
+    "start:sharepoint": "node tier2/sharepoint/index.js",
+    "start:autodesk": "node tier2/autodesk-docs/index.js",
+    "start:excel": "node tier2/excel-sheets/index.js",
+    "start:hecras": "node tier3/hec-ras/index.js",
+    "start:iitpave": "node tier3/iitpave/index.js",
+    "start:imd": "node tier4/imd/index.js",
+    "start:parivesh": "node tier4/parivesh/index.js",
+    "start:slack": "node tier5/slack/index.js",
+    "start:primavera": "node tier5/primavera/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "node-fetch": "^3.3.2",
+    "xlsx": "^0.18.5",
+    "pdf-parse": "^1.1.1",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "Apache-2.0"
+}

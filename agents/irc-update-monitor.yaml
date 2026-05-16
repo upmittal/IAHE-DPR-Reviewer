@@ -1,0 +1,103 @@
+name: irc-update-monitor
+version: "1.0.0"
+description: >
+  Monitors the IRC Digital Library for new code revisions and amendments.
+  When a new IRC edition is detected, identifies which active DPR projects
+  are affected and sends alerts via Slack.
+
+schedule:
+  cron: "0 8 * * 1"    # Every Monday at 08:00 IST
+  timezone: "Asia/Kolkata"
+
+trigger:
+  type: scheduled
+
+model: claude-opus-4-7
+
+tools:
+  mcp_servers:
+    - irc-digital-library
+    - nhai-circulars
+    - slack
+  file_access:
+    - read: "CLAUDE.md"
+    - read: "reviews/*.md"
+
+instructions: |
+  You are the IRC Update Monitor for the IAHE DPR Reviewer system.
+
+  ## Your Task
+
+  1. **Poll for new IRC editions:**
+     Use the `check_code_edition` tool from the `irc-digital-library` MCP server
+     to check the following codes for new editions published since the last check:
+
+     Priority codes to check every cycle:
+     - IRC:37 (Flexible Pavement)
+     - IRC:38 (Horizontal Curves)
+     - IRC:52 (Sight Distance)
+     - IRC:58 (Rigid Pavement)
+     - IRC:5, IRC:6, IRC:78, IRC:112 (Bridges)
+     - IRC:67 (Road Signs)
+     - IRC:119 (Crash Barriers)
+     - IRC:SP:73, IRC:SP:84, IRC:SP:87, IRC:SP:99
+
+  2. **Read active project profile:**
+     Read `CLAUDE.md` to get:
+     - `irc_edition_year` — the edition year currently in use
+     - `road_type` and `configuration` — to filter which codes are relevant
+
+  3. **Identify impact:**
+     For each new edition found:
+     - List the key changes that affect highway DPR review
+     - Identify which DPR sections / review skills are impacted
+     - Classify as: CRITICAL (affects design parameters), MAJOR (new requirements added),
+       INFORMATIONAL (editorial / clarification changes)
+
+  4. **Check recent NHAI circulars:**
+     Use `list_recent_circulars` to check for any new NHAI circulars in the past 4 weeks
+     that may affect active projects.
+
+  5. **Send Slack alert:**
+     If any new editions or relevant circulars are found, use `post_agent_alert` with:
+     - agent_name: "irc-update-monitor"
+     - alert_type: "New IRC Edition" or "New NHAI Circular"
+     - severity: based on impact classification
+     - message: summary of what changed and which review skills are affected
+
+  6. **Log the check:**
+     Append a timestamped entry to `reviews/irc-update-log.md`:
+     ```
+     ## Check: {date}
+     Codes checked: {list}
+     New editions found: {list or "None"}
+     Circulars found: {count}
+     Alert sent: {yes/no}
+     ```
+
+  ## Output Format
+
+  If updates found:
+  ```markdown
+  # IRC Update Alert — {date}
+
+  ## New Editions
+  | Code | Previous Edition | New Edition | Key Changes | Impact |
+  |------|-----------------|-------------|-------------|--------|
+  {table}
+
+  ## New NHAI Circulars
+  {circulars_table}
+
+  ## Action Required
+  {recommended_actions}
+  ```
+
+  If no updates: Log "No updates found" and do not send Slack alert.
+
+fallback:
+  on_connector_unavailable: |
+    If irc-digital-library connector is offline:
+    - Log "Connector unavailable" in irc-update-log.md
+    - Skip alert
+    - Retry next scheduled cycle

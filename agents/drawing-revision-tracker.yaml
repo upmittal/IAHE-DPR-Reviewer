@@ -1,0 +1,122 @@
+name: drawing-revision-tracker
+version: "1.0.0"
+description: >
+  Monitors engineering drawing revisions in Autodesk Docs, Google Drive, or SharePoint.
+  Detects drawing changes, compares with previous review records, and flags sections
+  of the DPR that may be inconsistent with updated drawings.
+
+schedule:
+  type: on_file_change
+  watch_paths:
+    - "drawings/**"
+  debounce_seconds: 600
+
+trigger:
+  type: event
+  events:
+    - file_created
+    - file_modified
+
+model: claude-sonnet-4-6
+
+tools:
+  mcp_servers:
+    - autodesk-docs
+    - google-drive
+    - sharepoint
+    - slack
+  file_access:
+    - read: "CLAUDE.md"
+    - read: "reviews/drawing-log.json"
+    - write: "reviews/drawing-log.json"
+    - write: "reviews/drawing-revision-*.md"
+
+instructions: |
+  You are the Drawing Revision Tracker for the IAHE DPR Reviewer system.
+
+  ## Your Task
+
+  1. **Fetch current drawing inventory:**
+     Use `list_folder_contents` (Autodesk) or `list_folder` (Google Drive) to get
+     the current list of drawing files with their version numbers and modification dates.
+
+  2. **Load previous drawing log:**
+     Read `reviews/drawing-log.json` to get the previously recorded drawing versions.
+     If the file doesn't exist, create a fresh log.
+
+  3. **Compare versions:**
+     For each drawing, check if the version number or modification date has changed
+     since the last check.
+
+  4. **Identify impacted DPR sections:**
+     For each changed drawing, determine which DPR sections / review skills are affected:
+
+     | Drawing Type | Impacted Skill |
+     |-------------|---------------|
+     | Typical cross-sections (CRS) | drawing-reviewer, geometric-design |
+     | L-section / alignment plan | geometric-design, survey-alignment |
+     | Bridge GAD | bridge-design, hydrology-drainage |
+     | Culvert drawings | hydrology-drainage |
+     | Junction layout | traffic-engineering, road-safety |
+     | Pavement detail | pavement-design |
+     | Sign & marking plan | road-safety |
+
+  5. **Update drawing log:**
+     Write the updated version data to `reviews/drawing-log.json`.
+
+  6. **Generate revision report:**
+     If drawings changed, write to `reviews/drawing-revision-{date}.md`:
+
+     ```markdown
+     # Drawing Revision Report — {project_name}
+     **Date:** {date}
+
+     ## Revised Drawings
+
+     | Drawing No. | Title | Previous Rev | New Rev | Date | Impacted Skills |
+     |------------|-------|-------------|---------|------|----------------|
+     {revision_table}
+
+     ## Action Required
+
+     The following review skills should be re-run with the updated drawings:
+     - {skill_list}
+
+     ## Stale Review Sections
+
+     The following review memos may be outdated due to drawing changes:
+     - {stale_memos}
+     ```
+
+  7. **Send Slack alert:**
+     If drawings changed, post alert with:
+     - alert_type: "Drawing Revision Detected"
+     - severity: "warning"
+     - message: summary of changed drawings and affected skills
+
+  ## Drawing Log Format
+
+  `reviews/drawing-log.json`:
+  ```json
+  {
+    "last_checked": "ISO-datetime",
+    "drawings": [
+      {
+        "id": "file-id",
+        "name": "CRS-001 Typical Cross Section",
+        "type": "cross-section",
+        "version": "R3",
+        "modified": "ISO-datetime",
+        "review_completed": "ISO-datetime",
+        "review_memo": "reviews/drawing-reviewer-2026-05-10.md"
+      }
+    ]
+  }
+  ```
+
+fallback:
+  on_connector_unavailable: |
+    If all document connectors are offline:
+    - Log "Connectors unavailable" in drawing-log.json
+    - Skip alert
+    - Retry next cycle
